@@ -1,8 +1,26 @@
 // API Service client communicating with Flask backend
 
-const API_BASE = import.meta.env.PROD
-  ? (import.meta.env.VITE_API_URL || 'http://localhost:5000')
-  : '/api';
+// VITE_API_URL should be your backend URL, e.g.:
+//   https://capacity-connect-backend.onrender.com/api
+// We accept both with and without the trailing /api for convenience.
+const ENV_URL = (import.meta.env.VITE_API_URL || '').trim().replace(/\/+$/, '');
+
+function resolveApiBase(): string {
+  if (ENV_URL) {
+    return ENV_URL.endsWith('/api') ? ENV_URL : `${ENV_URL}/api`;
+  }
+  if (import.meta.env.PROD) {
+    // Production build with no backend configured — log a clear warning.
+    // The request() below will turn this into a friendly error message.
+    console.error(
+      '[Capacity Connect] VITE_API_URL is not set! Go to Vercel → Project → Settings → Environment Variables and set VITE_API_URL to your backend URL (e.g. https://your-backend.onrender.com/api), then Redeploy.'
+    );
+    return '__MISSING_VITE_API_URL__/api';
+  }
+  return '/api';
+}
+
+const API_BASE = resolveApiBase();
 
 export interface User {
   id: number;
@@ -100,14 +118,27 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     Accept: 'application/json',
   };
 
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    ...options,
-    credentials: 'include', // essential for Flask sessions
-    headers: {
-      ...defaultHeaders,
-      ...options.headers,
-    },
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE}${endpoint}`, {
+      ...options,
+      credentials: 'include', // essential for Flask sessions
+      headers: {
+        ...defaultHeaders,
+        ...options.headers,
+      },
+    });
+  } catch (err) {
+    // Network-level failure (backend down, sleeping, wrong URL, CORS blocked, etc.)
+    if (API_BASE.includes('__MISSING_VITE_API_URL__')) {
+      throw new Error(
+        'Backend not configured. The site admin needs to set VITE_API_URL in Vercel environment variables.'
+      );
+    }
+    throw new Error(
+      'Failed to fetch: cannot reach the backend. If it is hosted on Render free tier it may be sleeping — wait 30-60 seconds and retry. Otherwise check that VITE_API_URL is correct.'
+    );
+  }
 
   const data = await response.json().catch(() => ({}));
 

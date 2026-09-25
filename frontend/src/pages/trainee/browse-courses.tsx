@@ -22,6 +22,7 @@ export const BrowseCoursesPage: React.FC<BrowseCoursesProps> = ({ onNavigate }) 
   const { user } = useAuth();
   const [courses, setCourses] = useState<CourseItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedDifficulty, setSelectedDifficulty] = useState('All');
@@ -38,6 +39,7 @@ export const BrowseCoursesPage: React.FC<BrowseCoursesProps> = ({ onNavigate }) 
 
   const loadCourses = async () => {
     setLoading(true);
+    setLoadError(null);
     try {
       const res = await api.courses.getAll({
         category: selectedCategory !== 'All' ? selectedCategory : undefined,
@@ -45,8 +47,9 @@ export const BrowseCoursesPage: React.FC<BrowseCoursesProps> = ({ onNavigate }) 
         search: search.trim() || undefined,
       });
       setCourses(res.courses);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to load courses', err);
+      setLoadError(err?.message || 'Could not load courses. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -148,6 +151,18 @@ export const BrowseCoursesPage: React.FC<BrowseCoursesProps> = ({ onNavigate }) 
       {loading ? (
         <div className="flex items-center justify-center py-20">
           <div className="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : loadError ? (
+        <div className="bg-white rounded-2xl p-12 text-center border border-rose-200">
+          <BookOpen className="w-12 h-12 text-rose-300 mx-auto mb-3" />
+          <h3 className="text-lg font-bold text-slate-800">Couldn't load courses</h3>
+          <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">{loadError}</p>
+          <button
+            onClick={() => loadCourses()}
+            className="mt-4 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold rounded-xl transition"
+          >
+            Retry
+          </button>
         </div>
       ) : courses.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

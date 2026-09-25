@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify
 from flask_cors import CORS
 from config import Config
@@ -9,6 +10,28 @@ from routes.progress import progress_bp
 from routes.certificates import certificates_bp
 from routes.admin import admin_bp
 
+def _allowed_origins():
+    # Comma-separated extra origins via env, e.g. FRONTEND_URL=https://my-app.vercel.app
+    env_origins = []
+    for key in ("FRONTEND_URL", "ALLOWED_ORIGINS"):
+        raw = os.environ.get(key, "").strip()
+        if raw:
+            env_origins.extend([o.strip().rstrip("/") for o in raw.split(",") if o.strip()])
+    defaults = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "https://capacity-connect-ashy.vercel.app",
+    ]
+    # Deduplicate, preserve order
+    seen = set()
+    origins = []
+    for o in env_origins + defaults:
+        if o not in seen:
+            seen.add(o)
+            origins.append(o)
+    return origins
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -16,12 +39,7 @@ def create_app():
     # Initialize CORS for both local development and deployed frontend
     CORS(
         app,
-        resources={r"/api/*": {"origins": [
-            "http://localhost:5173",
-            "http://127.0.0.1:5173",
-            "http://localhost:3000",
-            "https://capacity-connect-ashy.vercel.app",
-        ]}},
+        resources={r"/api/*": {"origins": _allowed_origins()}},
         supports_credentials=True,
         allow_headers=["Content-Type", "Authorization"],
         methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
