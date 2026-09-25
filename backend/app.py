@@ -13,11 +13,18 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # Initialize CORS
+    # Initialize CORS for both local development and deployed frontend
     CORS(
         app,
+        resources={r"/api/*": {"origins": [
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+            "http://localhost:3000",
+            "https://capacity-connect-ashy.vercel.app",
+        ]}},
         supports_credentials=True,
-        origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"]
+        allow_headers=["Content-Type", "Authorization"],
+        methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     )
 
     # Initialize Database
