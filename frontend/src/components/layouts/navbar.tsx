@@ -33,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 border-b border-slate-100 transition-all">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/90 border-b border-slate-800/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo */}
         <div
@@ -44,9 +44,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
             C
           </div>
           <div>
-            <div className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-brand-600 transition flex items-center gap-1.5">
+            <div className="text-lg font-bold tracking-tight text-white group-hover:text-brand-400 transition flex items-center gap-1.5">
               <span>CAPACITY</span>
-              <span className="text-brand-600 font-extrabold">CONNECT</span>
+              <span className="text-brand-400 font-extrabold">CONNECT</span>
             </div>
             <p className="text-[10px] uppercase font-semibold tracking-wider text-slate-400 -mt-0.5">
               Learn • Grow • Achieve
@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
           <button
             onClick={() => onNavigate('landing')}
             className={`text-sm font-medium transition ${
-              currentPage === 'landing' ? 'text-brand-600 font-semibold' : 'text-slate-600 hover:text-slate-900'
+              currentPage === 'landing' ? 'text-brand-400 font-semibold' : 'text-slate-300 hover:text-white'
             }`}
           >
             Home
@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
           <button
             onClick={() => onNavigate('courses-browse')}
             className={`text-sm font-medium transition ${
-              currentPage === 'courses-browse' ? 'text-brand-600 font-semibold' : 'text-slate-600 hover:text-slate-900'
+              currentPage === 'courses-browse' ? 'text-brand-400 font-semibold' : 'text-slate-300 hover:text-white'
             }`}
           >
             Courses
@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
                 el?.scrollIntoView({ behavior: 'smooth' });
               }, 100);
             }}
-            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition"
+            className="text-sm font-medium text-slate-300 hover:text-white transition"
           >
             How It Works
           </button>
@@ -92,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
                 el?.scrollIntoView({ behavior: 'smooth' });
               }, 100);
             }}
-            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition"
+            className="text-sm font-medium text-slate-300 hover:text-white transition"
           >
             Features
           </button>
@@ -104,47 +104,47 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
           <div className="relative">
             <button
               onClick={() => setQuickLoginOpen(!quickLoginOpen)}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 hover:bg-brand-100 transition shadow-sm"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-brand-950 border border-brand-800 text-brand-300 hover:bg-brand-900 transition shadow-sm"
               title="One-click switch demo accounts for evaluation"
             >
-              <Sparkles className="w-3.5 h-3.5 text-brand-600" />
+              <Sparkles className="w-3.5 h-3.5 text-brand-400" />
               <span>Demo Roles</span>
             </button>
 
             {quickLoginOpen && (
-              <div className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-xl border border-slate-100 p-2 z-50 animate-in fade-in zoom-in-95">
+              <div className="absolute right-0 mt-2 w-52 bg-slate-900 rounded-xl shadow-2xl border border-slate-800 p-2 z-50 animate-in fade-in zoom-in-95">
                 <div className="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">
                   Instant Demo Switch
                 </div>
                 <button
                   onClick={() => handleDemoSwitch('trainee')}
-                  className="w-full flex items-center justify-between px-3 py-2 text-xs text-slate-700 hover:bg-brand-50 hover:text-brand-700 rounded-lg transition"
+                  className="w-full flex items-center justify-between px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 hover:text-sky-300 rounded-lg transition"
                 >
                   <div className="flex items-center gap-2">
-                    <User className="w-3.5 h-3.5 text-sky-500" />
+                    <User className="w-3.5 h-3.5 text-sky-400" />
                     <span>Trainee Demo</span>
                   </div>
-                  <span className="text-[10px] bg-sky-100 text-sky-700 px-1.5 py-0.5 rounded">Learner</span>
+                  <span className="text-[10px] bg-sky-950 text-sky-300 border border-sky-800 px-1.5 py-0.5 rounded">Learner</span>
                 </button>
                 <button
                   onClick={() => handleDemoSwitch('trainer')}
-                  className="w-full flex items-center justify-between px-3 py-2 text-xs text-slate-700 hover:bg-brand-50 hover:text-brand-700 rounded-lg transition"
+                  className="w-full flex items-center justify-between px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 hover:text-brand-300 rounded-lg transition"
                 >
                   <div className="flex items-center gap-2">
-                    <UserCheck className="w-3.5 h-3.5 text-brand-500" />
+                    <UserCheck className="w-3.5 h-3.5 text-brand-400" />
                     <span>Trainer Demo</span>
                   </div>
-                  <span className="text-[10px] bg-brand-100 text-brand-700 px-1.5 py-0.5 rounded">Teacher</span>
+                  <span className="text-[10px] bg-brand-950 text-brand-300 border border-brand-800 px-1.5 py-0.5 rounded">Teacher</span>
                 </button>
                 <button
                   onClick={() => handleDemoSwitch('admin')}
-                  className="w-full flex items-center justify-between px-3 py-2 text-xs text-slate-700 hover:bg-brand-50 hover:text-brand-700 rounded-lg transition"
+                  className="w-full flex items-center justify-between px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 hover:text-emerald-300 rounded-lg transition"
                 >
                   <div className="flex items-center gap-2">
-                    <Shield className="w-3.5 h-3.5 text-emerald-500" />
+                    <Shield className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Admin Demo</span>
                   </div>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">Admin</span>
+                  <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded">Admin</span>
                 </button>
               </div>
             )}
@@ -154,10 +154,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => onNavigate(getDashboardTarget())}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-xl transition shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl transition shadow-sm"
               >
                 <span>Dashboard</span>
-                <span className="capitalize text-xs bg-slate-800 text-brand-300 px-2 py-0.5 rounded-full border border-slate-700">
+                <span className="capitalize text-xs bg-brand-950 text-brand-300 px-2 py-0.5 rounded-full border border-brand-800">
                   {user.role}
                 </span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -167,13 +167,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => onNavigate('login')}
-                className="text-sm font-medium text-slate-700 hover:text-brand-600 px-3 py-2 rounded-lg transition"
+                className="text-sm font-medium text-slate-300 hover:text-white px-3 py-2 rounded-lg transition"
               >
                 Log In
               </button>
               <button
                 onClick={() => onNavigate('register')}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition shadow-sm shadow-brand-500/25"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-500 rounded-xl transition shadow-sm shadow-brand-500/25"
               >
                 <span>Get Started</span>
                 <ChevronRight className="w-4 h-4" />
@@ -186,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-600 hover:text-slate-900 rounded-lg"
+            className="p-2 text-slate-400 hover:text-white rounded-lg"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -195,53 +195,53 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-3 pb-6 space-y-4">
+        <div className="md:hidden border-b border-slate-800 bg-slate-950 px-4 pt-3 pb-6 space-y-4">
           <div className="flex flex-col space-y-2">
             <button
               onClick={() => { onNavigate('landing'); setMobileMenuOpen(false); }}
-              className="text-left px-3 py-2 text-base font-medium text-slate-700 rounded-lg hover:bg-slate-50"
+              className="text-left px-3 py-2 text-base font-medium text-slate-200 rounded-lg hover:bg-slate-900"
             >
               Home
             </button>
             <button
               onClick={() => { onNavigate('courses-browse'); setMobileMenuOpen(false); }}
-              className="text-left px-3 py-2 text-base font-medium text-slate-700 rounded-lg hover:bg-slate-50"
+              className="text-left px-3 py-2 text-base font-medium text-slate-200 rounded-lg hover:bg-slate-900"
             >
               Browse Courses
             </button>
           </div>
 
-          <div className="border-t border-slate-100 pt-3">
+          <div className="border-t border-slate-900 pt-3">
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
               Instant Demo Switch
             </div>
             <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => handleDemoSwitch('trainee')}
-                className="p-2 text-center bg-sky-50 text-sky-800 rounded-lg text-xs font-semibold"
+                className="p-2 text-center bg-sky-950 text-sky-300 border border-sky-800 rounded-lg text-xs font-semibold"
               >
                 Trainee
               </button>
               <button
                 onClick={() => handleDemoSwitch('trainer')}
-                className="p-2 text-center bg-brand-50 text-brand-800 rounded-lg text-xs font-semibold"
+                className="p-2 text-center bg-brand-950 text-brand-300 border border-brand-800 rounded-lg text-xs font-semibold"
               >
                 Trainer
               </button>
               <button
                 onClick={() => handleDemoSwitch('admin')}
-                className="p-2 text-center bg-emerald-50 text-emerald-800 rounded-lg text-xs font-semibold"
+                className="p-2 text-center bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-lg text-xs font-semibold"
               >
                 Admin
               </button>
             </div>
           </div>
 
-          <div className="border-t border-slate-100 pt-3">
+          <div className="border-t border-slate-900 pt-3">
             {user ? (
               <button
                 onClick={() => { onNavigate(getDashboardTarget()); setMobileMenuOpen(false); }}
-                className="w-full py-2.5 px-4 bg-slate-900 text-white rounded-xl font-semibold text-sm flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 bg-slate-900 border border-slate-800 text-white rounded-xl font-semibold text-sm flex items-center justify-center gap-2"
               >
                 <span>Go to {user.role} Dashboard</span>
                 <ChevronRight className="w-4 h-4" />
@@ -250,7 +250,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
               <div className="flex flex-col gap-2">
                 <button
                   onClick={() => { onNavigate('login'); setMobileMenuOpen(false); }}
-                  className="w-full py-2.5 px-4 border border-slate-200 text-slate-700 rounded-xl font-semibold text-sm text-center"
+                  className="w-full py-2.5 px-4 border border-slate-800 bg-slate-900 text-slate-200 rounded-xl font-semibold text-sm text-center"
                 >
                   Log In
                 </button>

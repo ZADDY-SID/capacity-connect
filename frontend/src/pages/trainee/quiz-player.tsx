@@ -63,13 +63,13 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
 
   if (!quiz || !quiz.questions || quiz.questions.length === 0) {
     return (
-      <div className="bg-white rounded-2xl p-10 text-center border border-slate-200">
-        <HelpCircle className="w-10 h-10 text-slate-300 mx-auto mb-2" />
-        <h3 className="text-base font-bold text-slate-800">Quiz not available</h3>
-        <p className="text-xs text-slate-500 mt-1">This quiz has no questions published yet.</p>
+      <div className="bg-slate-900 rounded-2xl p-10 text-center border border-slate-800">
+        <HelpCircle className="w-10 h-10 text-slate-600 mx-auto mb-2" />
+        <h3 className="text-base font-bold text-slate-100">Quiz not available</h3>
+        <p className="text-xs text-slate-400 mt-1">This quiz has no questions published yet.</p>
         <button
           onClick={() => onNavigate('course-player', { courseId })}
-          className="mt-4 px-4 py-2 bg-brand-600 text-white text-xs font-semibold rounded-xl"
+          className="mt-4 px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold rounded-xl"
         >
           Return to Course
         </button>
@@ -125,27 +125,27 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in duration-200">
+    <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in duration-200 text-slate-100">
       {/* Top Header */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-xl shadow-black/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <button
             onClick={() => onNavigate('course-player', { courseId })}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 hover:text-slate-800 transition mb-2"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-slate-100 transition mb-2"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Course Modules</span>
           </button>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">{quiz.title}</h2>
-          <p className="text-xs text-slate-500 mt-1">
-            Passing Threshold: <strong>{quiz.passing_percentage}%</strong> • {quiz.questions.length} Questions
+          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-100">{quiz.title}</h2>
+          <p className="text-xs text-slate-400 mt-1">
+            Passing Threshold: <strong className="text-violet-300">{quiz.passing_percentage}%</strong> • {quiz.questions.length} Questions
           </p>
         </div>
 
         {/* Answered Counter */}
-        <div className="bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-center">
-          <div className="text-xs text-slate-500 font-medium">Answered</div>
-          <div className="text-base font-bold text-slate-900">
+        <div className="bg-slate-800/60 border border-slate-700/80 px-4 py-2.5 rounded-xl text-center">
+          <div className="text-xs text-slate-400 font-medium">Answered</div>
+          <div className="text-base font-bold text-slate-100">
             {Object.keys(selectedAnswers).length} / {quiz.questions.length}
           </div>
         </div>
@@ -154,10 +154,10 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
       {/* Result Display Banner if Submitted */}
       {result && (
         <div
-          className={`p-6 rounded-2xl border shadow-soft transition-all duration-300 ${
+          className={`p-6 rounded-2xl border shadow-xl transition-all duration-300 ${
             result.passed
-              ? 'bg-gradient-to-r from-emerald-50 to-teal-50 border-emerald-300'
-              : 'bg-gradient-to-r from-rose-50 to-amber-50 border-rose-300'
+              ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-100'
+              : 'bg-rose-950/40 border-rose-500/40 text-rose-100'
           }`}
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -173,16 +173,16 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
                 <span
                   className={`text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
                     result.passed
-                      ? 'bg-emerald-200 text-emerald-900'
-                      : 'bg-rose-200 text-rose-900'
+                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                      : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
                   }`}
                 >
                   {result.passed ? 'Assessment Passed' : 'Assessment Needs Improvement'}
                 </span>
-                <h3 className="text-xl font-black text-slate-900 mt-1">
+                <h3 className="text-xl font-black text-slate-100 mt-1">
                   You scored {result.score} of {result.max_score} points ({result.percentage}%)
                 </h3>
-                <p className="text-xs text-slate-600 mt-0.5">
+                <p className="text-xs text-slate-300 mt-0.5">
                   {result.passed
                     ? 'Outstanding job! You demonstrated mastery of the subject.'
                     : `You need at least ${result.passing_percentage}% to pass. Review the answers below and try again.`}
@@ -194,7 +194,7 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
               {result.certificate && (
                 <button
                   onClick={() => setShowCertificate(true)}
-                  className="px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl transition shadow-sm flex items-center gap-1.5"
+                  className="px-4 py-2.5 bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs rounded-xl transition shadow-sm flex items-center gap-1.5"
                 >
                   <Award className="w-4 h-4" />
                   <span>View Certificate</span>
@@ -202,7 +202,7 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
               )}
               <button
                 onClick={handleRetake}
-                className="px-4 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs rounded-xl transition flex items-center gap-1.5"
+                className="px-4 py-2.5 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl transition flex items-center gap-1.5"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Retake Quiz</span>
@@ -221,15 +221,15 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
           return (
             <div
               key={q.id}
-              className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft"
+              className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-xl shadow-black/20"
             >
               {/* Question header */}
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div className="flex items-start gap-3">
-                  <span className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                  <span className="w-7 h-7 rounded-lg bg-slate-800 text-slate-200 font-bold text-xs flex items-center justify-center flex-shrink-0 border border-slate-700">
                     {idx + 1}
                   </span>
-                  <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                  <h4 className="text-sm sm:text-base font-bold text-slate-100 leading-snug">
                     {q.question_text}
                   </h4>
                 </div>
@@ -247,16 +247,16 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
                   { key: 'D', text: q.option_d },
                 ].map((opt) => {
                   const isSelected = selected === opt.key;
-                  let optStyle = 'border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800';
+                  let optStyle = 'border-slate-800 bg-slate-800/40 hover:bg-slate-800 text-slate-200';
 
                   if (result && detailedAnswer) {
                     if (opt.key === detailedAnswer.correct_option) {
-                      optStyle = 'border-emerald-500 bg-emerald-50 text-emerald-950 ring-2 ring-emerald-400';
+                      optStyle = 'border-emerald-500 bg-emerald-950/60 text-emerald-100 ring-2 ring-emerald-500/50';
                     } else if (isSelected && !detailedAnswer.is_correct) {
-                      optStyle = 'border-rose-500 bg-rose-50 text-rose-950 ring-2 ring-rose-400';
+                      optStyle = 'border-rose-500 bg-rose-950/60 text-rose-100 ring-2 ring-rose-500/50';
                     }
                   } else if (isSelected) {
-                    optStyle = 'border-brand-600 bg-brand-50/70 text-brand-900 ring-2 ring-brand-500/20';
+                    optStyle = 'border-violet-500 bg-violet-950/60 text-violet-100 ring-2 ring-violet-500/40';
                   }
 
                   return (
@@ -269,7 +269,7 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
                     >
                       <span
                         className={`w-6 h-6 rounded-lg text-xs font-bold flex items-center justify-center flex-shrink-0 ${
-                          isSelected ? 'bg-brand-600 text-white' : 'bg-slate-100 text-slate-600'
+                          isSelected ? 'bg-violet-600 text-white' : 'bg-slate-800 text-slate-400 border border-slate-700'
                         }`}
                       >
                         {opt.key}
@@ -285,10 +285,10 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
               {/* Post-submission Review details */}
               {result && detailedAnswer && (
                 <div
-                  className={`mt-4 p-3 rounded-xl text-xs flex items-center justify-between ${
+                  className={`mt-4 p-3 rounded-xl text-xs flex items-center justify-between border ${
                     detailedAnswer.is_correct
-                      ? 'bg-emerald-50 text-emerald-800'
-                      : 'bg-rose-50 text-rose-800'
+                      ? 'bg-emerald-950/50 border-emerald-800/60 text-emerald-200'
+                      : 'bg-rose-950/50 border-rose-800/60 text-rose-200'
                   }`}
                 >
                   <span className="font-semibold">
@@ -308,14 +308,14 @@ export const QuizPlayerPage: React.FC<QuizPlayerProps> = ({ courseId, quizId, on
 
       {/* Bottom Submit Action */}
       {!result && (
-        <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft flex items-center justify-between">
-          <div className="text-xs text-slate-500">
+        <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-xl flex items-center justify-between">
+          <div className="text-xs text-slate-400">
             Ensure you have answered all questions prior to submitting.
           </div>
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs sm:text-sm rounded-xl transition shadow-sm shadow-brand-500/25 flex items-center gap-2 disabled:opacity-50"
+            className="px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs sm:text-sm rounded-xl transition shadow-lg shadow-violet-900/30 flex items-center gap-2 disabled:opacity-50"
           >
             <span>{submitting ? 'Evaluating...' : 'Submit Assessment'}</span>
             <ArrowRight className="w-4 h-4" />

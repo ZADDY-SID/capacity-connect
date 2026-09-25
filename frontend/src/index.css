@@ -4,14 +4,39 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 font-sans antialiased;
+    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white;
     margin: 0;
     padding: 0;
     min-height: 100vh;
     color-scheme: dark;
   }
+
+  /* Standard dark input & select styling resets */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    @apply bg-slate-900 border-slate-800 text-slate-100 placeholder-slate-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30;
+  }
 }
 
+/* Custom scrollbar for dark mode */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
 
 /* Print layout for certificate printing / PDF */
 @media print {

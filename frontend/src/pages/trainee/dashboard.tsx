@@ -68,31 +68,31 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-200">
+    <div className="space-y-8 animate-in fade-in duration-200 text-slate-100">
       {/* Welcome Banner */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-brand-700 via-indigo-700 to-sky-700 rounded-3xl p-8 text-white shadow-soft-lg">
+      <div className="relative overflow-hidden bg-gradient-to-r from-brand-900 via-indigo-950 to-slate-900 rounded-3xl p-8 border border-slate-800 text-white shadow-soft-lg">
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-xs text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-950/80 border border-brand-700/60 text-brand-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Trainee Learning Hub</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
             Welcome back, {user?.name}!
           </h2>
-          <p className="mt-2 text-sm text-brand-100 leading-relaxed font-light">
+          <p className="mt-2 text-sm text-slate-300 leading-relaxed font-light">
             You're currently enrolled in {stats.enrolled_count} courses with an overall completion
             rate of {stats.overall_progress}%. Keep learning to unlock your next credential!
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <button
               onClick={() => onNavigate('courses-browse')}
-              className="px-4 py-2 bg-white text-brand-800 hover:bg-brand-50 rounded-xl text-xs font-bold transition shadow-sm"
+              className="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition shadow-sm"
             >
               Browse New Courses
             </button>
             <button
               onClick={() => onNavigate('trainee-certificates')}
-              className="px-4 py-2 bg-brand-900/40 hover:bg-brand-900/60 border border-white/20 text-white rounded-xl text-xs font-semibold transition"
+              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 rounded-xl text-xs font-semibold transition"
             >
               View My Certificates ({stats.certificate_count})
             </button>
@@ -102,63 +102,63 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
 
       {/* 4 Core Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-soft">
+        <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-soft">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
               Enrolled Courses
             </span>
-            <div className="p-2.5 rounded-xl bg-sky-50 text-sky-600">
+            <div className="p-2.5 rounded-xl bg-sky-950 border border-sky-800 text-sky-400">
               <BookOpen className="w-5 h-5" />
             </div>
           </div>
           <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900">{stats.enrolled_count}</span>
-            <span className="text-xs text-slate-500">active programs</span>
+            <span className="text-3xl font-black text-white">{stats.enrolled_count}</span>
+            <span className="text-xs text-slate-400">active programs</span>
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-soft">
+        <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-soft">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
               Completed
             </span>
-            <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
+            <div className="p-2.5 rounded-xl bg-emerald-950 border border-emerald-800 text-emerald-400">
               <CheckCircle2 className="w-5 h-5" />
             </div>
           </div>
           <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900">{stats.completed_count}</span>
-            <span className="text-xs text-emerald-600 font-medium">courses finished</span>
+            <span className="text-3xl font-black text-white">{stats.completed_count}</span>
+            <span className="text-xs text-emerald-400 font-medium">courses finished</span>
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-soft">
+        <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-soft">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
               Average Quiz Score
             </span>
-            <div className="p-2.5 rounded-xl bg-brand-50 text-brand-600">
+            <div className="p-2.5 rounded-xl bg-brand-950 border border-brand-800 text-brand-400">
               <TrendingUp className="w-5 h-5" />
             </div>
           </div>
           <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900">{stats.average_score}%</span>
-            <span className="text-xs text-brand-600 font-medium">assessment mastery</span>
+            <span className="text-3xl font-black text-white">{stats.average_score}%</span>
+            <span className="text-xs text-brand-400 font-medium">assessment mastery</span>
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-soft">
+        <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-soft">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
               Certificates Earned
             </span>
-            <div className="p-2.5 rounded-xl bg-amber-50 text-amber-600">
+            <div className="p-2.5 rounded-xl bg-amber-950 border border-amber-800 text-amber-400">
               <Award className="w-5 h-5" />
             </div>
           </div>
           <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900">{stats.certificate_count}</span>
-            <span className="text-xs text-amber-600 font-medium">verified credentials</span>
+            <span className="text-3xl font-black text-white">{stats.certificate_count}</span>
+            <span className="text-xs text-amber-400 font-medium">verified credentials</span>
           </div>
         </div>
       </div>
@@ -166,10 +166,10 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
       {/* Main Enrolled Courses Grid */}
       <div>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-bold text-slate-900">My Active Courses</h3>
+          <h3 className="text-lg font-bold text-white">My Active Courses</h3>
           <button
             onClick={() => onNavigate('courses-browse')}
-            className="text-xs font-semibold text-brand-600 hover:text-brand-700"
+            className="text-xs font-semibold text-brand-400 hover:text-brand-300"
           >
             Explore Catalog →
           </button>
@@ -185,16 +185,16 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
               return (
                 <div
                   key={en.id}
-                  className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-soft hover:shadow-soft-lg transition flex flex-col justify-between"
+                  className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-soft hover:shadow-glow transition flex flex-col justify-between"
                 >
                   <div>
-                    <div className="relative h-36 bg-slate-100 overflow-hidden">
+                    <div className="relative h-36 bg-slate-950 overflow-hidden">
                       <img
                         src={course.thumbnail_url}
                         alt={course.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover opacity-90"
                       />
-                      <div className="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-bold text-slate-800">
+                      <div className="absolute top-2.5 left-2.5 bg-slate-950/90 border border-slate-800 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-bold text-slate-200">
                         {course.category}
                       </div>
                       <div className="absolute top-2.5 right-2.5">
@@ -212,16 +212,16 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
                     </div>
 
                     <div className="p-5">
-                      <h4 className="font-bold text-slate-900 text-base line-clamp-1">{course.title}</h4>
-                      <p className="text-xs text-slate-500 mt-1 line-clamp-2">{course.description}</p>
+                      <h4 className="font-bold text-white text-base line-clamp-1">{course.title}</h4>
+                      <p className="text-xs text-slate-400 mt-1 line-clamp-2">{course.description}</p>
 
                       {/* Progress Bar */}
                       <div className="mt-4">
                         <div className="flex items-center justify-between text-xs font-semibold mb-1.5">
-                          <span className="text-slate-600">Course Progress</span>
-                          <span className="text-brand-600 font-bold">{en.progress_percentage}%</span>
+                          <span className="text-slate-400">Course Progress</span>
+                          <span className="text-brand-400 font-bold">{en.progress_percentage}%</span>
                         </div>
-                        <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                        <div className="w-full h-2 rounded-full bg-slate-950 overflow-hidden">
                           <div
                             className={`h-full rounded-full transition-all duration-500 ${
                               isComplete
@@ -241,7 +241,7 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
                   <div className="p-5 pt-0">
                     <button
                       onClick={() => onNavigate('course-player', { courseId: course.id })}
-                      className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition text-center shadow-xs"
+                      className="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-slate-700 transition text-center shadow-xs"
                     >
                       {isComplete ? 'Review Course Material' : 'Continue Learning →'}
                     </button>
@@ -251,15 +251,15 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
             })}
           </div>
         ) : (
-          <div className="bg-white rounded-2xl p-10 text-center border border-dashed border-slate-200">
-            <BookOpen className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-            <h4 className="text-base font-bold text-slate-800">You are not enrolled in any courses yet</h4>
-            <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+          <div className="bg-slate-900 rounded-2xl p-10 text-center border border-dashed border-slate-800">
+            <BookOpen className="w-10 h-10 text-slate-500 mx-auto mb-3" />
+            <h4 className="text-base font-bold text-white">You are not enrolled in any courses yet</h4>
+            <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
               Start by discovering available training programs in our catalog.
             </p>
             <button
               onClick={() => onNavigate('courses-browse')}
-              className="mt-4 px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold rounded-xl transition shadow-xs"
+              className="mt-4 px-5 py-2.5 bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold rounded-xl transition shadow-xs"
             >
               Browse Catalog
             </button>
@@ -270,9 +270,9 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
       {/* Split Section: Recent Activity & Certificates Showcase */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Activity */}
-        <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft">
+        <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-soft">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base font-bold text-slate-900">Recent Milestones</h3>
+            <h3 className="text-base font-bold text-white">Recent Milestones</h3>
             <span className="text-xs text-slate-400">Activity Log</span>
           </div>
 
@@ -281,13 +281,13 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
               {data.recent_activity.map((act, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"
+                  className="flex items-start gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800"
                 >
                   <div
                     className={`p-2 rounded-lg ${
                       act.type === 'certificate'
-                        ? 'bg-amber-100 text-amber-700'
-                        : 'bg-brand-100 text-brand-700'
+                        ? 'bg-amber-950 text-amber-300 border border-amber-800'
+                        : 'bg-brand-950 text-brand-300 border border-brand-800'
                     }`}
                   >
                     {act.type === 'certificate' ? (
@@ -297,8 +297,8 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
                     )}
                   </div>
                   <div className="flex-1">
-                    <p className="text-xs font-bold text-slate-800">{act.title}</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">{act.details}</p>
+                    <p className="text-xs font-bold text-white">{act.title}</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">{act.details}</p>
                   </div>
                 </div>
               ))}
@@ -309,12 +309,12 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
         </div>
 
         {/* Certificates Quick Preview */}
-        <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft">
+        <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-soft">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base font-bold text-slate-900">Earned Credentials</h3>
+            <h3 className="text-base font-bold text-white">Earned Credentials</h3>
             <button
               onClick={() => onNavigate('trainee-certificates')}
-              className="text-xs font-semibold text-brand-600 hover:text-brand-700"
+              className="text-xs font-semibold text-brand-400 hover:text-brand-300"
             >
               View All ({data?.certificates.length || 0})
             </button>
@@ -325,22 +325,22 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
               {data.certificates.slice(0, 3).map((cert) => (
                 <div
                   key={cert.id}
-                  className="flex items-center justify-between p-3.5 rounded-xl border border-slate-200/80 hover:border-brand-300 bg-slate-50 hover:bg-white transition"
+                  className="flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-950 hover:border-brand-500/50 transition"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600">
+                    <div className="w-10 h-10 rounded-xl bg-amber-950 border border-amber-800 flex items-center justify-center text-amber-400">
                       <Award className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-slate-900">{cert.course_title}</p>
-                      <p className="text-[10px] text-slate-500">
+                      <p className="text-xs font-bold text-white">{cert.course_title}</p>
+                      <p className="text-[10px] text-slate-400">
                         Issued on {cert.issue_date} • ID: {cert.certificate_code}
                       </p>
                     </div>
                   </div>
                   <button
                     onClick={() => setActiveCert(cert)}
-                    className="px-3 py-1.5 bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-semibold rounded-lg transition"
+                    className="px-3 py-1.5 bg-brand-950 hover:bg-brand-900 text-brand-300 border border-brand-800 text-xs font-semibold rounded-lg transition"
                   >
                     View
                   </button>
@@ -349,8 +349,8 @@ export const TraineeDashboard: React.FC<TraineeDashboardProps> = ({ onNavigate }
             </div>
           ) : (
             <div className="text-center py-8">
-              <Award className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-              <p className="text-xs text-slate-500">
+              <Award className="w-8 h-8 text-slate-500 mx-auto mb-2" />
+              <p className="text-xs text-slate-400">
                 Complete all course modules and pass the final assessment to earn your credentials!
               </p>
             </div>

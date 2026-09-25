@@ -77,16 +77,16 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-200">
+    <div className="space-y-8 animate-in fade-in duration-200 text-slate-100">
       {/* Header */}
-      <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-soft">
-        <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+      <div className="bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-xl shadow-black/20">
+        <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
           Catalog Governance
         </span>
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-100 mt-2">
           Curriculum Catalog Moderation
         </h2>
-        <p className="text-slate-600 text-sm mt-1">
+        <p className="text-slate-400 text-sm mt-1">
           Review course content, toggle public catalog visibility, and remove unaccredited submissions.
         </p>
 
@@ -99,11 +99,11 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search course title or topics..."
-              className="w-full pl-10 pr-20 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-500"
+              className="w-full pl-10 pr-20 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-slate-100 focus:outline-none focus:border-violet-500"
             />
             <button
               type="submit"
-              className="absolute right-1.5 top-1.5 px-3 py-1 bg-slate-900 text-white text-xs rounded-lg font-semibold"
+              className="absolute right-1.5 top-1.5 px-3 py-1 bg-violet-600 hover:bg-violet-500 text-white text-xs rounded-lg font-semibold transition"
             >
               Search
             </button>
@@ -112,7 +112,7 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:outline-none focus:border-brand-500"
+            className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs font-semibold text-slate-200 focus:outline-none focus:border-violet-500"
           >
             {categories.map((c) => (
               <option key={c} value={c}>
@@ -124,15 +124,15 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
       </div>
 
       {/* Courses List Table */}
-      <div className="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden">
+      <div className="bg-slate-900 rounded-2xl border border-slate-800 shadow-xl shadow-black/20 overflow-hidden">
         {loading ? (
           <div className="p-12 text-center">
-            <div className="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mx-auto" />
+            <div className="w-8 h-8 border-4 border-violet-500 border-t-transparent rounded-full animate-spin mx-auto" />
           </div>
         ) : courses.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 text-slate-500 font-semibold uppercase tracking-wider border-b border-slate-200">
+              <thead className="bg-slate-800/80 text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-700/80">
                 <tr>
                   <th className="py-3.5 px-6">Course</th>
                   <th className="py-3.5 px-6">Trainer</th>
@@ -142,18 +142,18 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
                   <th className="py-3.5 px-6 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 font-medium">
+              <tbody className="divide-y divide-slate-800 font-medium">
                 {courses.map((c) => (
-                  <tr key={c.id} className="hover:bg-slate-50/80 transition">
+                  <tr key={c.id} className="hover:bg-slate-800/50 transition">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
                         <img
                           src={c.thumbnail_url}
                           alt={c.title}
-                          className="w-10 h-10 rounded-lg object-cover bg-slate-100 flex-shrink-0"
+                          className="w-10 h-10 rounded-lg object-cover bg-slate-800 border border-slate-700 flex-shrink-0"
                         />
                         <div>
-                          <p className="text-slate-900 font-bold line-clamp-1">{c.title}</p>
+                          <p className="text-slate-100 font-bold line-clamp-1">{c.title}</p>
                           <p className="text-[11px] text-slate-400">
                             {c.category} • {c.difficulty}
                           </p>
@@ -161,18 +161,18 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
                       </div>
                     </td>
 
-                    <td className="py-4 px-6 text-slate-700 font-semibold">{c.trainer_name}</td>
+                    <td className="py-4 px-6 text-slate-300 font-semibold">{c.trainer_name}</td>
 
-                    <td className="py-4 px-6 text-slate-600">{c.module_count} modules</td>
+                    <td className="py-4 px-6 text-slate-400">{c.module_count} modules</td>
 
-                    <td className="py-4 px-6 text-slate-600">{c.enrollment_count} students</td>
+                    <td className="py-4 px-6 text-slate-400">{c.enrollment_count} students</td>
 
                     <td className="py-4 px-6">
                       <span
-                        className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${
+                        className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${
                           c.is_published
-                            ? 'bg-emerald-100 text-emerald-800'
-                            : 'bg-amber-100 text-amber-800'
+                            ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+                            : 'bg-amber-500/10 text-amber-300 border-amber-500/30'
                         }`}
                       >
                         {c.is_published ? 'Published' : 'Hidden / Draft'}
@@ -185,8 +185,8 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
                           onClick={() => handleTogglePublish(c.id)}
                           className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
                             c.is_published
-                              ? 'bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200'
-                              : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200'
+                              ? 'bg-amber-950/40 text-amber-300 hover:bg-amber-900/60 border border-amber-800/60'
+                              : 'bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/60 border border-emerald-800/60'
                           }`}
                         >
                           {c.is_published ? 'Unpublish' : 'Approve & Publish'}
@@ -194,7 +194,7 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
 
                         <button
                           onClick={() => handleDeleteCourse(c.id)}
-                          className="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 transition"
+                          className="p-1.5 text-slate-400 hover:text-rose-400 rounded-lg hover:bg-rose-950/40 transition"
                           title="Remove Course"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -208,8 +208,8 @@ export const AdminCourseManagementPage: React.FC<AdminCourseManagementProps> = (
           </div>
         ) : (
           <div className="p-12 text-center">
-            <Layers className="w-10 h-10 text-slate-300 mx-auto mb-2" />
-            <p className="text-xs text-slate-500">No courses match your filter criteria.</p>
+            <Layers className="w-10 h-10 text-slate-600 mx-auto mb-2" />
+            <p className="text-xs text-slate-400">No courses match your filter criteria.</p>
           </div>
         )}
       </div>

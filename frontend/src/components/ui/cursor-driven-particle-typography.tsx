@@ -69,7 +69,7 @@ export const CursorDrivenParticleTypography: React.FC<CursorDrivenParticleTypogr
       const offCtx = offscreen.getContext('2d');
       if (!offCtx) return;
 
-      offCtx.fillStyle = '#000000';
+      offCtx.fillStyle = '#ffffff';
       offCtx.font = `900 ${responsiveFontSize}px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
       offCtx.textAlign = 'center';
       offCtx.textBaseline = 'middle';
@@ -85,12 +85,12 @@ export const CursorDrivenParticleTypography: React.FC<CursorDrivenParticleTypogr
       const step = Math.max(2, Math.floor(6 / densityFactor));
 
       const colorPalette = [
-        '#6366f1', // Indigo
-        '#8b5cf6', // Purple
-        '#7c3aed', // Deep Violet
-        '#3b82f6', // Blue
-        '#06b6d4', // Cyan
-        '#2563eb', // Royal Blue
+        '#c084fc', // Purple
+        '#a78bfa', // Lavender
+        '#818cf8', // Indigo
+        '#38bdf8', // Sky Blue
+        '#22d3ee', // Cyan
+        '#e879f9', // Bright Fuchsia
       ];
 
       for (let y = 0; y < height; y += step) {
